@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cserwen's blog | 单片机系列（一）：开发环境安装</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="cserwen">
+
+    <meta name="color-scheme" content="light dark">
+
+    
+    
+<link rel="stylesheet" href="/styles/index.css">
+
+    
+    <link rel="shortcut icon" href="/imgs/logo.png">
+
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    
+    
+
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body id="delicate-app">
+    <main>
+        <div class="container">
+            <section class="page-top-badge flex-between w100">
+                <div>
+                    <a href="/">
+                        <span title="github"><i class="fa fa-home" aria-hidden="true"></i></span>
+                    </a>
+                </div>
+                <!-- <div>
+                    
+                </div> -->
+            </section>
+            <aside class="toc-container">
+    <!-- sticky toc -->
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">开发环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85-Clion"><span class="toc-number">2.1.</span> <span class="toc-text">1. 安装 Clion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Python"><span class="toc-number">2.2.</span> <span class="toc-text">2. Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Platformio"><span class="toc-number">2.3.</span> <span class="toc-text">3. Platformio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%83%A7%E5%BD%95%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.4.</span> <span class="toc-text">4. 烧录程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">3.</span> <span class="toc-text">Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.1.</span> <span class="toc-text">1. 创建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BC%96%E5%86%99-main-c-%E4%BB%A3%E7%A0%81"><span class="toc-number">3.2.</span> <span class="toc-text">2. 编写 main.c 代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%83%A8%E7%BD%B2"><span class="toc-number">3.3.</span> <span class="toc-text">3. 部署</span></a></li></ol></li></ol>
+</aside>
+
+<article class="markdown-container">
+    <section>
+        <h1>
+            <span>
+                单片机系列（一）：开发环境安装
+            </span>
+        
+            <div class="post-info">
+                <span></span>
+                <span>
+                    11k字 • 
+                    23分钟
+                </span>
+            </div>
+        </h1>
+    </section>
+
+    <section class="article">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前几年一直想找机会学习嵌入式开发，幻想着自己可以做一些小的工具来使用，但是一直没怎么进行，今天为什么打算入坑呢？原因还得从我媳妇儿开始学习缝纫机这个事情说起，她之前是一个没什么兴趣的人，可能最大的兴趣就是看剧逛淘宝，但是最近买了一个缝纫机后，每天都在研究做各种各样的小玩意，整个人都变得有精气神了，这让我感受到很震惊。我一直觉得自己是兴趣很多的人，但是最近突然对所有事情都失去了兴趣，这不是一个好的兆头，因此我迫切希望学习一些新的事情，来让生活不那么无趣，想了想之前想做却未做的事情，单片机好像能排到前列，于是就有了今天的这篇文章，希望我能够坚持下去(<em>^_^</em>)</p>
+<span id="more"></span>
+
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>从淘宝上火速下单了一块 51 开发板之后（选错了套餐，还有一块 stm32 的板子，后续再研究），一脸懵逼，感觉自己有些冲动了，但想了想，万事开头难，不能放弃这么快，如果放弃了一定会被我媳妇儿天天笑话。。。</p>
+<p>既然要开发，那么一定要配置开发环境，研究了半天，发现嵌入式的开发工具都是上了年头的老软件，比如 <a target="_blank" rel="noopener" href="https://www.keil.com/">keil</a>，都 2026 年，没有什么新的 IDE 吗？一番搜索后，发现 vscode 或者 clion 也可以进行开发。本人之前是 IDEA 的重度使用者， 也用 clion 写过一些 C 代码，因此决定使用 Clion 来开发，一下是配置环境的过程</p>
+<h3 id="1-安装-Clion"><a href="#1-安装-Clion" class="headerlink" title="1. 安装 Clion"></a>1. 安装 Clion</h3><p>Clion 安装比较简单，直接在<a target="_blank" rel="noopener" href="https://www.jetbrains.com/clion/promo/?source=google&medium=cpc&campaign=APAC_en_ASIA_Clion_Branded&term=clion&content=489240779651&gad_source=1&gad_campaignid=11959979451&gbraid=0AAAAADloJziSTL-XaBl-rYMDhHJ06aBJi&gclid=CjwKCAiA1obMBhAbEiwAsUBbItKZAwXh-HFXr9CgJzUODXATt0b2yzA9O8NXQ0niEJEAuVVI9AR0PRoCDxAQAvD_BwE">官网</a>下载安装即可。同时因为之前参与过一些开源项目，所以我可以免费使用 Jetbrains 家的工具，直接可以开始使用<br><img src="/2026/02/03/learn-51-01/01-clion-image.png" alt="clion"></p>
+<p>新建项目时，显示未安装 platformio core，需要安装，参考<a target="_blank" rel="noopener" href="https://docs.platformio.org/en/latest/core/installation/index.html">官网</a> 教程进行安装</p>
+<h3 id="2-Python"><a href="#2-Python" class="headerlink" title="2. Python"></a>2. Python</h3><p>依赖 Python 开发环境，直接在 Microsoft Store 搜索安装即可<br><img src="/2026/02/03/learn-51-01/python.png" alt="python"></p>
+<h3 id="3-Platformio"><a href="#3-Platformio" class="headerlink" title="3. Platformio"></a>3. Platformio</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd E:\platformio\</span><br><span class="line">python.exe get-platformio.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-烧录程序"><a href="#4-烧录程序" class="headerlink" title="4. 烧录程序"></a>4. 烧录程序</h3><p>使用 <a target="_blank" rel="noopener" href="https://www.stcai.com/gjrj">aicube</a> 将程序烧录到开发板中<br><img src="/2026/02/03/learn-51-01/aicube.png" alt="aicube"></p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>安装好开发环境后，我们需要简单写个 Demo 验证一下</p>
+<h3 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1. 创建项目"></a>1. 创建项目</h3><ul>
+<li><p>选择开发板型号<br><img src="/2026/02/03/learn-51-01/image.png" alt="image"></p>
+</li>
+<li><p>修改 platformio.ini 文件</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[env:STC89C516RD]</span>  <span class="comment"># 默认是 `env:STC89C516RD+`,有问题</span></span><br><span class="line"><span class="attr">platform</span> = intel_mcs51</span><br><span class="line"><span class="attr">board</span> = STC89C516RD+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加自定义编译文件：custom-complier.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Source - https://stackoverflow.com/a/79660618</span></span><br><span class="line"><span class="comment"># Posted by lxhlll</span></span><br><span class="line"><span class="comment"># Retrieved 2026-02-02, License - CC BY-SA 4.0</span></span><br><span class="line"></span><br><span class="line"><span class="attr">compilers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">description:</span> <span class="string">SDCC</span> <span class="string">for</span> <span class="number">8051</span></span><br><span class="line">    <span class="attr">match-compiler-exe:</span> <span class="string">&quot;(.*/)?sdcc(.exe)?&quot;</span></span><br><span class="line">    <span class="attr">match-args:</span> <span class="string">-mmcs51</span></span><br><span class="line">    <span class="attr">match-language:</span> <span class="string">C</span></span><br><span class="line">    <span class="attr">include-dirs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;project-path&#125;/include</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;compiler-exe-dir&#125;/../include/mcs51</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;compiler-exe-dir&#125;/../include</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;compiler-exe-dir&#125;/../non-free/include</span></span><br><span class="line">    <span class="attr">defines-text:</span> <span class="string">&quot;</span></span><br><span class="line"><span class="string">    #define __SDCC_USE_NON_FREE 1</span></span><br><span class="line"><span class="string">    #define __SDCC_MCS51 1</span></span><br><span class="line"><span class="string">    #define __STC8G1K08A 1</span></span><br><span class="line"><span class="string">    #define __8051__ 1</span></span><br><span class="line"><span class="string">    #define __STDC_VERSION__ 201112L</span></span><br><span class="line"><span class="string">    #define __STDC_ISO_10646__ 201409L</span></span><br><span class="line"><span class="string">    #define __STDC_UTF_16__ 1</span></span><br><span class="line"><span class="string">    #define __STDC_UTF_32__ 1</span></span><br><span class="line"><span class="string">    #define __STDC__ 1</span></span><br><span class="line"><span class="string">    #define __SDCC 4_4_0</span></span><br><span class="line"><span class="string">    #define __SDCC_REVISION 14620</span></span><br><span class="line"><span class="string">    #define __SDCC_VERSION_MAJOR 4</span></span><br><span class="line"><span class="string">    #define __SDCC_VERSION_MINOR 4</span></span><br><span class="line"><span class="string">    #define __SDCC_VERSION_PATCH 0</span></span><br><span class="line"><span class="string">    #define __interrupt(vector)</span></span><br><span class="line"><span class="string">    #define __using(regnum)</span></span><br><span class="line"><span class="string">    #define __code</span></span><br><span class="line"><span class="string">    #define __at(addr)</span></span><br><span class="line"><span class="string">    #define __sfr</span></span><br><span class="line"><span class="string">    #define __sfr16</span></span><br><span class="line"><span class="string">    #define __sfr32</span></span><br><span class="line"><span class="string">    #define __sbit</span></span><br><span class="line"><span class="string">    #define __xdata</span></span><br><span class="line"><span class="string">    &quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 Clion 配置<br><img src="/2026/02/03/learn-51-01/image-2.png" alt="image-02"></p>
+</li>
+</ul>
+<h3 id="2-编写-main-c-代码"><a href="#2-编写-main-c-代码" class="headerlink" title="2. 编写 main.c 代码"></a>2. 编写 main.c 代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入51单片机寄存器定义头文件，识别P1、延时函数相关寄存器</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mcs51/8051.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">delay</span><span class="params">(<span class="type">int</span> ms)</span> &#123;</span><br><span class="line">    ms = ms * <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">while</span> (ms--) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序入口函数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 无限循环：让LED闪烁逻辑反复执行（防止程序跑飞，实现持续闪烁）</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>) &#123;</span><br><span class="line">        P2_0 = <span class="number">0</span>;  <span class="comment">// P2.0引脚输出低电平，点亮LED</span></span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line">        P2_0 = <span class="number">1</span>;  <span class="comment">// P2.0引脚输出高电平，熄灭LED</span></span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h3><ul>
+<li><p>开发板插线<br>P20 链接 D3（其实也可以连接其他 LED，比如 D1、D2）<br><img src="/2026/02/03/learn-51-01/image-3.jpg" alt="image-03"></p>
+</li>
+<li><p>烧录程序<br>将 firmware.hex 程序烧录到开发板中<br><img src="/2026/02/03/learn-51-01/image-4.png" alt="image-04"><br>使用 aicube 烧录，选择对应型号、串口、程序文件，点击<code>下载</code>完成烧录<br><img src="/2026/02/03/learn-51-01/image-5.png" alt="image-05"></p>
+</li>
+<li><p>验证程序<br><img src="/2026/02/03/learn-51-01/gif-1.gif" alt="gif"></p>
+</li>
+</ul>
+<p>Good Work!!!</p>
+
+    </section>
+
+    
+        <section class="post-tag">
+            <a href="/tags"><i class="fa fa-tags"></i></a>
+            
+                <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="tag-item">
+                    嵌入式
+                </a>
+            
+                <a href="/tags/51/" class="tag-item">
+                    51
+                </a>
+            
+        </section>
+    
+    
+        <section class="post-cate">
+            <a href="/categories"><i class="fa fa-inbox"></i></a>
+            
+                <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="cate-item">
+                    嵌入式
+                </a>
+            
+        </section>
+    
+
+    <section class="post-cc">
+        <div class="post-cc-author">
+            <span class="bold">作者：</span><a href="mailto:jjack_chen3@163.com" title="cserwen">cserwen</a>
+        </div>
+        <div class="post-cc-link">
+            <span class="bold">链接：</span><a href="/2026/02/03/learn-51-01/">https://blog.cserwen.com/2026/02/03/learn-51-01/</a>
+        </div>
+        <div class="post-cc-source">
+            <span class="bold">来源：</span><a href="/">cserwen's blog</a>
+        </div>
+        <div class="ppost-cc-declare">
+            <span class="bold">版权声明: </span>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a> 许可协议。著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 
+        </div>
+    </section>
+
+    <section class="flex-between" style="margin: 20px 0;">
+        <div class="pre">
+            
+        </div>
+        <div class="next">
+            
+        </div>
+    </section>
+
+    <!-- comment -->
+    <section class="comment-container">
+        <!-- giscus -->
+        
+    </section>
+</article>
+
+
+
+
+            <section class="article-bottom flex-between">
+                <div class="flex-center">
+                    <img src="/imgs/logo.png" class="logo">
+                    <span>长风破浪会有时，直挂云帆济沧海</span>
+                </div>
+                <div class="flex-center">
+                    <a href="mailto:jjack_chen3@163.com">
+                        <span title="envelope">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <a target="_blank" rel="noopener" href="https://github.com/can-dy-jack/hexo-theme-delicate">
+                        <span title="github" style="font-size: 18px;">
+                            <i class="fa fa-github" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="to-top">
+    <a href="javascript: void(0)" onclick="delicate.toTop()">
+        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <footer>
+        <div class="footer-info gray">
+    <div>
+        <span><a target="_blank" rel="noopener" href="https://github.com/can-dy-jack/hexo-theme-delicate">Delicate</a> theme designed with ❤️ by <a target="_blank" rel="noopener" href="https://github.com/can-dy-jack">can-dy-jack</a></span>
+    </div>
+    <div>
+        <span>Copyright Ⓒ 2026. All rights reserved.</span>
+    </div>
+</div>
+    </footer>
+
+    
+
+
+<script src="/js/index.js"></script>
+
+
+</body>
+
+</html>
