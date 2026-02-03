@@ -59,7 +59,7 @@
                 <span></span>
                 <span>
                     11k字 • 
-                    23分钟
+                    22分钟
                 </span>
             </div>
         </h1>
@@ -74,7 +74,8 @@
 <h3 id="1-安装-Clion"><a href="#1-安装-Clion" class="headerlink" title="1. 安装 Clion"></a>1. 安装 Clion</h3><p>Clion 安装比较简单，直接在<a target="_blank" rel="noopener" href="https://www.jetbrains.com/clion/promo/?source=google&medium=cpc&campaign=APAC_en_ASIA_Clion_Branded&term=clion&content=489240779651&gad_source=1&gad_campaignid=11959979451&gbraid=0AAAAADloJziSTL-XaBl-rYMDhHJ06aBJi&gclid=CjwKCAiA1obMBhAbEiwAsUBbItKZAwXh-HFXr9CgJzUODXATt0b2yzA9O8NXQ0niEJEAuVVI9AR0PRoCDxAQAvD_BwE">官网</a>下载安装即可。同时因为之前参与过一些开源项目，所以我可以免费使用 Jetbrains 家的工具，直接可以开始使用<br><img src="/2026/02/03/learn-51-01/01-clion-image.png" alt="clion"></p>
 <p>新建项目时，显示未安装 platformio core，需要安装，参考<a target="_blank" rel="noopener" href="https://docs.platformio.org/en/latest/core/installation/index.html">官网</a> 教程进行安装</p>
 <h3 id="2-Python"><a href="#2-Python" class="headerlink" title="2. Python"></a>2. Python</h3><p>依赖 Python 开发环境，直接在 Microsoft Store 搜索安装即可<br><img src="/2026/02/03/learn-51-01/python.png" alt="python"></p>
-<h3 id="3-Platformio"><a href="#3-Platformio" class="headerlink" title="3. Platformio"></a>3. Platformio</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd E:\platformio\</span><br><span class="line">python.exe get-platformio.py</span><br></pre></td></tr></table></figure>
+<h3 id="3-Platformio"><a href="#3-Platformio" class="headerlink" title="3. Platformio"></a>3. Platformio</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> E:<span class="token punctuation">\</span>platformio<span class="token punctuation">\</span>
+python.exe get-platformio.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="4-烧录程序"><a href="#4-烧录程序" class="headerlink" title="4. 烧录程序"></a>4. 烧录程序</h3><p>使用 <a target="_blank" rel="noopener" href="https://www.stcai.com/gjrj">aicube</a> 将程序烧录到开发板中<br><img src="/2026/02/03/learn-51-01/aicube.png" alt="aicube"></p>
 <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>安装好开发环境后，我们需要简单写个 Demo 验证一下</p>
@@ -82,15 +83,74 @@
 <li><p>选择开发板型号<br><img src="/2026/02/03/learn-51-01/image.png" alt="image"></p>
 </li>
 <li><p>修改 platformio.ini 文件</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[env:STC89C516RD]</span>  <span class="comment"># 默认是 `env:STC89C516RD+`,有问题</span></span><br><span class="line"><span class="attr">platform</span> = intel_mcs51</span><br><span class="line"><span class="attr">board</span> = STC89C516RD+</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">env:STC89C516RD</span><span class="token punctuation">]</span></span>  # 默认是 `env:STC89C516RD+`,有问题
+<span class="token key attr-name">platform</span> <span class="token punctuation">=</span> <span class="token value attr-value">intel_mcs51</span>
+<span class="token key attr-name">board</span> <span class="token punctuation">=</span> <span class="token value attr-value">STC89C516RD+</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>添加自定义编译文件：custom-complier.yaml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Source - https://stackoverflow.com/a/79660618</span></span><br><span class="line"><span class="comment"># Posted by lxhlll</span></span><br><span class="line"><span class="comment"># Retrieved 2026-02-02, License - CC BY-SA 4.0</span></span><br><span class="line"></span><br><span class="line"><span class="attr">compilers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">description:</span> <span class="string">SDCC</span> <span class="string">for</span> <span class="number">8051</span></span><br><span class="line">    <span class="attr">match-compiler-exe:</span> <span class="string">&quot;(.*/)?sdcc(.exe)?&quot;</span></span><br><span class="line">    <span class="attr">match-args:</span> <span class="string">-mmcs51</span></span><br><span class="line">    <span class="attr">match-language:</span> <span class="string">C</span></span><br><span class="line">    <span class="attr">include-dirs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;project-path&#125;/include</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;compiler-exe-dir&#125;/../include/mcs51</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;compiler-exe-dir&#125;/../include</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$&#123;compiler-exe-dir&#125;/../non-free/include</span></span><br><span class="line">    <span class="attr">defines-text:</span> <span class="string">&quot;</span></span><br><span class="line"><span class="string">    #define __SDCC_USE_NON_FREE 1</span></span><br><span class="line"><span class="string">    #define __SDCC_MCS51 1</span></span><br><span class="line"><span class="string">    #define __STC8G1K08A 1</span></span><br><span class="line"><span class="string">    #define __8051__ 1</span></span><br><span class="line"><span class="string">    #define __STDC_VERSION__ 201112L</span></span><br><span class="line"><span class="string">    #define __STDC_ISO_10646__ 201409L</span></span><br><span class="line"><span class="string">    #define __STDC_UTF_16__ 1</span></span><br><span class="line"><span class="string">    #define __STDC_UTF_32__ 1</span></span><br><span class="line"><span class="string">    #define __STDC__ 1</span></span><br><span class="line"><span class="string">    #define __SDCC 4_4_0</span></span><br><span class="line"><span class="string">    #define __SDCC_REVISION 14620</span></span><br><span class="line"><span class="string">    #define __SDCC_VERSION_MAJOR 4</span></span><br><span class="line"><span class="string">    #define __SDCC_VERSION_MINOR 4</span></span><br><span class="line"><span class="string">    #define __SDCC_VERSION_PATCH 0</span></span><br><span class="line"><span class="string">    #define __interrupt(vector)</span></span><br><span class="line"><span class="string">    #define __using(regnum)</span></span><br><span class="line"><span class="string">    #define __code</span></span><br><span class="line"><span class="string">    #define __at(addr)</span></span><br><span class="line"><span class="string">    #define __sfr</span></span><br><span class="line"><span class="string">    #define __sfr16</span></span><br><span class="line"><span class="string">    #define __sfr32</span></span><br><span class="line"><span class="string">    #define __sbit</span></span><br><span class="line"><span class="string">    #define __xdata</span></span><br><span class="line"><span class="string">    &quot;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Source - https://stackoverflow.com/a/79660618</span>
+<span class="token comment"># Posted by lxhlll</span>
+<span class="token comment"># Retrieved 2026-02-02, License - CC BY-SA 4.0</span>
+
+<span class="token key atrule">compilers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">description</span><span class="token punctuation">:</span> SDCC for 8051
+    <span class="token key atrule">match-compiler-exe</span><span class="token punctuation">:</span> <span class="token string">"(.*/)?sdcc(.exe)?"</span>
+    <span class="token key atrule">match-args</span><span class="token punctuation">:</span> <span class="token punctuation">-</span>mmcs51
+    <span class="token key atrule">match-language</span><span class="token punctuation">:</span> C
+    <span class="token key atrule">include-dirs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> $<span class="token punctuation">&#123;</span>project<span class="token punctuation">-</span>path<span class="token punctuation">&#125;</span>/include
+      <span class="token punctuation">-</span> $<span class="token punctuation">&#123;</span>compiler<span class="token punctuation">-</span>exe<span class="token punctuation">-</span>dir<span class="token punctuation">&#125;</span>/../include/mcs51
+      <span class="token punctuation">-</span> $<span class="token punctuation">&#123;</span>compiler<span class="token punctuation">-</span>exe<span class="token punctuation">-</span>dir<span class="token punctuation">&#125;</span>/../include
+      <span class="token punctuation">-</span> $<span class="token punctuation">&#123;</span>compiler<span class="token punctuation">-</span>exe<span class="token punctuation">-</span>dir<span class="token punctuation">&#125;</span>/../non<span class="token punctuation">-</span>free/include
+    <span class="token key atrule">defines-text</span><span class="token punctuation">:</span> "
+    <span class="token comment">#define __SDCC_USE_NON_FREE 1</span>
+    <span class="token comment">#define __SDCC_MCS51 1</span>
+    <span class="token comment">#define __STC8G1K08A 1</span>
+    <span class="token comment">#define __8051__ 1</span>
+    <span class="token comment">#define __STDC_VERSION__ 201112L</span>
+    <span class="token comment">#define __STDC_ISO_10646__ 201409L</span>
+    <span class="token comment">#define __STDC_UTF_16__ 1</span>
+    <span class="token comment">#define __STDC_UTF_32__ 1</span>
+    <span class="token comment">#define __STDC__ 1</span>
+    <span class="token comment">#define __SDCC 4_4_0</span>
+    <span class="token comment">#define __SDCC_REVISION 14620</span>
+    <span class="token comment">#define __SDCC_VERSION_MAJOR 4</span>
+    <span class="token comment">#define __SDCC_VERSION_MINOR 4</span>
+    <span class="token comment">#define __SDCC_VERSION_PATCH 0</span>
+    <span class="token comment">#define __interrupt(vector)</span>
+    <span class="token comment">#define __using(regnum)</span>
+    <span class="token comment">#define __code</span>
+    <span class="token comment">#define __at(addr)</span>
+    <span class="token comment">#define __sfr</span>
+    <span class="token comment">#define __sfr16</span>
+    <span class="token comment">#define __sfr32</span>
+    <span class="token comment">#define __sbit</span>
+    <span class="token comment">#define __xdata</span>
+    "<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>修改 Clion 配置<br><img src="/2026/02/03/learn-51-01/image-2.png" alt="image-02"></p>
 </li>
 </ul>
-<h3 id="2-编写-main-c-代码"><a href="#2-编写-main-c-代码" class="headerlink" title="2. 编写 main.c 代码"></a>2. 编写 main.c 代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入51单片机寄存器定义头文件，识别P1、延时函数相关寄存器</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mcs51/8051.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">delay</span><span class="params">(<span class="type">int</span> ms)</span> &#123;</span><br><span class="line">    ms = ms * <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">while</span> (ms--) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序入口函数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 无限循环：让LED闪烁逻辑反复执行（防止程序跑飞，实现持续闪烁）</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>) &#123;</span><br><span class="line">        P2_0 = <span class="number">0</span>;  <span class="comment">// P2.0引脚输出低电平，点亮LED</span></span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line">        P2_0 = <span class="number">1</span>;  <span class="comment">// P2.0引脚输出高电平，熄灭LED</span></span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-编写-main-c-代码"><a href="#2-编写-main-c-代码" class="headerlink" title="2. 编写 main.c 代码"></a>2. 编写 main.c 代码</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 引入51单片机寄存器定义头文件，识别P1、延时函数相关寄存器</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;mcs51/8051.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">delay</span><span class="token punctuation">(</span><span class="token keyword">int</span> ms<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    ms <span class="token operator">=</span> ms <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>ms<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 程序入口函数</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 无限循环：让LED闪烁逻辑反复执行（防止程序跑飞，实现持续闪烁）</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        P2_0 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">// P2.0引脚输出低电平，点亮LED</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        P2_0 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// P2.0引脚输出高电平，熄灭LED</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h3><ul>
 <li><p>开发板插线<br>P20 链接 D3（其实也可以连接其他 LED，比如 D1、D2）<br><img src="/2026/02/03/learn-51-01/image-3.jpg" alt="image-03"></p>
